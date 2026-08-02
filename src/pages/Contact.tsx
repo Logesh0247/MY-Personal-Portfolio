@@ -56,14 +56,14 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "logeshbuvaneshwari37@gmail.com",
-      href: "mailto:logeshbuvaneshwari37@gmail.com",
+      value: "logeshds247@gmail.com",
+      href: "mailto:logeshds247@gmail.com",
       color: "text-blue-500"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Tamil Nadu, Hosur",
+      value: "Hosur,Tamil Nadu",
       href: "#",
       color: "text-red-500"
     }
@@ -315,7 +315,7 @@ const Contact = () => {
                 <motion.div
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="text-center p-6 rounded-lg border border-primary/20 hover:border-primary/40 transition-colors cursor-pointer"
-                  onClick={() => window.open("mailto:logeshbuvaneshwari37@gmail.com")}
+                  onClick={() => window.open("mailto:logeshds247@gmail.com")}
                 >
                   <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Email Me</h3>

@@ -46,7 +46,7 @@ const About = () => {
                 <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                   <p>
                     I'm <span className="text-primary font-semibold">LOGESH S</span>, 
-                    a passionate data science graduate from Tamil Nadu, Hosur. 
+                    a passionate data science graduate from Hosur,Tamil Nadu. 
                     My journey into the world of data began during my BSc Data Science program, 
                     where I discovered the incredible power of turning raw information into actionable insights.
                   </p>

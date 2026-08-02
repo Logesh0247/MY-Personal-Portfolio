@@ -52,11 +52,11 @@ const Resume = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-primary" />
-                    <span>logeshbuvaneshwari37@gmail.com</span>
+                    <span>logeshds247@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-primary" />
-                    <span>Tamil Nadu, Hosur</span>
+                    <span>Hosur,Tamil Nadu</span>
                   </div>
                 </div>
               </div>

@@ -109,11 +109,11 @@ const Portfolio = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-sm">logeshbuvaneshwari37@gmail.com</span>
+                <span className="text-sm">logeshds247@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Tamil Nadu, Hosur</span>
+                <span>Hosur,Tamil Nadu</span>
               </div>
             </motion.div>
           </motion.div>
