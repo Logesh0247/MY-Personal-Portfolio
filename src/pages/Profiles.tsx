@@ -1,396 +1,294 @@
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Navigation from "@/components/Navigation";
-import ParticleBackground from "@/components/ParticleBackground";
-import { ExternalLink, Award, Code, Trophy, Star, TrendingUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import PageHeader from "@/components/PageHeader";
+import { stats } from "@/lib/site";
+import {
+  ArrowUpRight,
+  Award,
+  BarChart3,
+  ChefHat,
+  Code2,
+  Dumbbell,
+  ExternalLink,
+  Github,
+  Globe,
+  Medal,
+  Trophy,
+  Zap,
+} from "lucide-react";
 
 const Profiles = () => {
   const codingProfiles = [
     {
       platform: "LeetCode",
       username: "logesh_s",
+      icon: Code2,
       stats: {
-        problemsSolved: 245,
-        rank: "Top 15%",
-        rating: 1650,
-        streak: "45 days"
+        "Problems solved": 245,
+        Ranking: "Top 15%",
+        Rating: 1650,
+        "Best streak": "45 days",
       },
-      achievements: ["Solved 100+ Easy", "50+ Medium Problems", "Contest Participant"],
-      description: "Actively solving algorithmic problems and participating in weekly contests",
-      color: "from-orange-500 to-yellow-500",
-      icon: "💻",
-      link: "#"
+      achievements: ["100+ Easy solved", "50+ Medium solved", "Weekly contest regular"],
+      description:
+        "Consistent algorithm practice and weekly contests to keep problem-solving sharp.",
+      link: "#",
     },
     {
       platform: "HackerRank",
       username: "logesh_data",
+      icon: Trophy,
       stats: {
-        problemsSolved: 180,
-        rank: "5 Star",
-        badges: 12,
-        certificates: 5
+        "Problems solved": 180,
+        Python: "5-star",
+        SQL: "5-star",
+        Certificates: 5,
       },
-      achievements: ["Python Gold Badge", "SQL Gold Badge", "Problem Solving 5★"],
-      description: "Certified in Python, SQL, and Problem Solving with 5-star ratings",
-      color: "from-green-500 to-emerald-500", 
-      icon: "🏆",
-      link: "#"
-    },
-    {
-      platform: "Codeforces",
-      username: "logesh_cf",
-      stats: {
-        problemsSolved: 156,
-        rank: "Pupil",
-        rating: 1275,
-        contests: 25
-      },
-      achievements: ["Consistent Participant", "200+ Rating Gain", "Div 2 Solver"],
-      description: "Regular contest participant with focus on competitive programming",
-      color: "from-blue-500 to-indigo-500",
-      icon: "⚡",
-      link: "#"
+      achievements: ["Python Gold badge", "SQL Gold badge", "Problem Solving 5-star"],
+      description:
+        "Verified certifications in Python and SQL with 5-star domain badges.",
+      link: "#",
     },
     {
       platform: "GitHub",
-      username: "logesh-s",
+      username: "Logesh0247",
+      icon: Github,
       stats: {
-        repositories: 45,
-        stars: 128,
-        followers: 85,
-        contributions: "500+ this year"
+        Repositories: 45,
+        Stars: 128,
+        Followers: 85,
+        Contributions: "500+ / yr",
       },
       achievements: ["Arctic Code Vault", "Pull Shark", "Quickdraw"],
-      description: "Active contributor with focus on data science and web development projects",
-      color: "from-gray-600 to-gray-800",
-      icon: "📂",
-      link: "#"
+      description:
+        "Home of my project code — data science notebooks, dashboards and web apps.",
+      link: "https://github.com/Logesh0247",
     },
     {
       platform: "Kaggle",
       username: "logeshdata",
+      icon: BarChart3,
       stats: {
-        competitions: 8,
-        datasets: 5,
-        notebooks: 15,
-        rank: "Contributor"
+        Competitions: 8,
+        Datasets: 5,
+        Notebooks: 15,
+        Status: "Contributor",
       },
-      achievements: ["Competition Expert", "Notebooks Expert", "5 Bronze Medals"],
-      description: "Data science competitions and sharing analysis notebooks with community",
-      color: "from-cyan-500 to-blue-600",
-      icon: "📊",
-      link: "#"
+      achievements: ["Notebook expert track", "5 bronze medals", "Active competitor"],
+      description:
+        "Competitions and public notebooks sharing end-to-end analysis with the community.",
+      link: "#",
+    },
+    {
+      platform: "Codeforces",
+      username: "logesh_cf",
+      icon: Zap,
+      stats: {
+        "Problems solved": 156,
+        Rank: "Pupil",
+        Rating: 1275,
+        Contests: 25,
+      },
+      achievements: ["Rated contestant", "Div. 2 participant", "200+ rating gain"],
+      description:
+        "Rated competitive programming — where I learned to think fast under constraints.",
+      link: "#",
     },
     {
       platform: "CodeChef",
       username: "logesh_cook",
+      icon: ChefHat,
       stats: {
-        problemsSolved: 95,
-        rank: "3 Star",
-        rating: 1580,
-        contests: 18
+        "Problems solved": 95,
+        Rank: "3-star",
+        Rating: 1580,
+        Contests: 18,
       },
-      achievements: ["3★ Coder", "Monthly Challenge Participant", "50+ Problems"],
-      description: "Participating in long challenges and improving algorithmic thinking",
-      color: "from-amber-500 to-orange-600",
-      icon: "👨‍🍳",
-      link: "#"
-    }
+      achievements: ["3-star coder", "Long challenge regular", "50+ problems"],
+      description:
+        "Long-format contests that built my appetite for careful, correct code.",
+      link: "#",
+    },
+  ];
+
+  const skills = [
+    { icon: Dumbbell, title: "Problem solving", text: "Decomposing hard problems into solvable pieces." },
+    { icon: Zap, title: "Algorithm design", text: "Choosing efficient structures and complexity bounds." },
+    { icon: BarChart3, title: "Data structures", text: "Trees, graphs, heaps — and when each one matters." },
+    { icon: Medal, title: "Consistency", text: "Daily practice habits that compound over time." },
   ];
 
   return (
-    <div className="min-h-screen relative">
-      <ParticleBackground />
-      <Navigation />
-      
-      <div className="pt-24 px-4 pb-20">
-        <div className="max-w-7xl mx-auto space-y-12">
-          {/* Header */}
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <PageHeader
+        eyebrow="Coding profiles"
+        title="Where I practise my craft"
+        description="Competitive programming and data science platforms keep my fundamentals sharp between projects."
+      />
+
+      {/* Overview stats */}
+      <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {[
+          { icon: Code2, value: "650+", label: "Problems solved" },
+          { icon: Globe, value: stats.platforms, label: "Platforms active" },
+          { icon: Trophy, value: "40+", label: "Contests entered" },
+          { icon: Medal, value: "15+", label: "Badges & certificates" },
+        ].map((stat, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center space-y-4"
+            key={stat.label}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="card-surface flex items-center gap-4 p-5"
           >
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Coding Profiles
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              My journey across various coding platforms and competitive programming sites
-            </p>
+            <div className="icon-tile">
+              <stat.icon className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-2xl font-bold tracking-tight">{stat.value}</div>
+              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            </div>
           </motion.div>
-
-          {/* Overall Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid md:grid-cols-4 gap-6"
-          >
-            {[
-              { label: "Problems Solved", value: "1,000+", icon: "💡" },
-              { label: "Platforms Active", value: "6", icon: "🌐" },
-              { label: "Contest Participations", value: "75+", icon: "🏁" },
-              { label: "Achievements Earned", value: "25+", icon: "🏅" }
-            ].map((stat, index) => (
-              <Card key={index} className="glass-card p-6 text-center">
-                <div className="text-3xl mb-3">{stat.icon}</div>
-                <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </Card>
-            ))}
-          </motion.div>
-
-          {/* Coding Profiles Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            {codingProfiles.map((profile, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="glass-card p-6 h-full hover:shadow-glow transition-all duration-300 hover:-translate-y-2">
-                  {/* Platform Header */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${profile.color} rounded-full flex items-center justify-center text-2xl`}>
-                        {profile.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold">{profile.platform}</h3>
-                        <p className="text-muted-foreground">@{profile.username}</p>
-                      </div>
-                    </div>
-                    <Button 
-                      size="sm" 
-                      className="btn-glow"
-                      onClick={() => window.open(profile.link, '_blank')}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </Button>
-                  </div>
-
-                  {/* Platform Description */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {profile.description}
-                  </p>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    {Object.entries(profile.stats).map(([key, value], idx) => (
-                      <div key={idx} className="text-center p-3 rounded-lg bg-card/50">
-                        <div className="text-lg font-bold text-primary mb-1">{value}</div>
-                        <div className="text-xs text-muted-foreground capitalize">
-                          {key.replace(/([A-Z])/g, ' $1').trim()}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Achievements */}
-                  <div className="space-y-3">
-                    <h4 className="font-semibold flex items-center gap-2">
-                      <Award className="w-4 h-4 text-primary" />
-                      Key Achievements
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {profile.achievements.map((achievement, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs">
-                          {achievement}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Action Button */}
-                  <div className="mt-6">
-                    <Button 
-                      className="w-full btn-glow"
-                      onClick={() => window.open(profile.link, '_blank')}
-                    >
-                      View Profile
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Coding Journey Timeline */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Card className="glass-card p-8">
-              <h2 className="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-2">
-                <TrendingUp className="w-6 h-6 text-primary" />
-                My Coding Journey
-              </h2>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    period: "2024",
-                    title: "Advanced Problem Solver",
-                    description: "Reached 1000+ problems solved across platforms. Focus on optimization and advanced algorithms.",
-                    milestone: "1000+ Problems"
-                  },
-                  {
-                    period: "2023", 
-                    title: "Contest Regular",
-                    description: "Started participating in weekly contests and competitions. Improved rating significantly.",
-                    milestone: "Regular Contests"
-                  },
-                  {
-                    period: "2022",
-                    title: "Platform Explorer",
-                    description: "Joined multiple coding platforms and started solving problems systematically.",
-                    milestone: "Multi-platform Active"
-                  },
-                  {
-                    period: "2021",
-                    title: "Coding Beginner",
-                    description: "Started with basic programming problems and learned fundamental algorithms.",
-                    milestone: "First Steps"
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className="flex items-center gap-6"
-                  >
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center">
-                        <Code className="w-8 h-8 text-white" />
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1 p-4 rounded-lg bg-card/50">
-                      <div className="flex items-center gap-4 mb-2">
-                        <span className="text-primary font-bold text-lg">{item.period}</span>
-                        <Badge variant="outline" className="text-xs">
-                          {item.milestone}
-                        </Badge>
-                      </div>
-                      <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </Card>
-          </motion.section>
-
-          {/* Skills Developed */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Card className="glass-card p-8">
-              <h2 className="text-2xl font-bold mb-8 text-center">Skills Developed Through Coding</h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {[
-                  {
-                    skill: "Problem Solving",
-                    description: "Breaking down complex problems into manageable parts",
-                    icon: "🧩"
-                  },
-                  {
-                    skill: "Algorithm Design", 
-                    description: "Creating efficient solutions with optimal time complexity",
-                    icon: "⚙️"
-                  },
-                  {
-                    skill: "Data Structures",
-                    description: "Mastering arrays, trees, graphs, and advanced structures",
-                    icon: "🏗️"
-                  },
-                  {
-                    skill: "Competitive Programming",
-                    description: "Quick thinking and implementation under time pressure",
-                    icon: "⏱️"
-                  },
-                  {
-                    skill: "Code Optimization",
-                    description: "Writing clean, efficient, and maintainable code",
-                    icon: "🚀"
-                  },
-                  {
-                    skill: "Debugging",
-                    description: "Identifying and fixing issues systematically",
-                    icon: "🔍"
-                  },
-                  {
-                    skill: "Mathematical Thinking",
-                    description: "Applying mathematical concepts to solve problems",
-                    icon: "🔢"
-                  },
-                  {
-                    skill: "Pattern Recognition",
-                    description: "Identifying common patterns and applying solutions",
-                    icon: "🎯"
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="text-center p-4 rounded-lg border border-primary/20 hover:border-primary/40 transition-colors"
-                  >
-                    <div className="text-3xl mb-3">{item.icon}</div>
-                    <h3 className="font-semibold mb-2">{item.skill}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </Card>
-          </motion.section>
-
-          {/* Connect CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <Card className="glass-card p-12 max-w-2xl mx-auto">
-              <Trophy className="w-16 h-16 text-primary mx-auto mb-6" />
-              <h2 className="text-2xl font-bold mb-4">Let's Code Together!</h2>
-              <p className="text-muted-foreground mb-8">
-                Always excited to collaborate on coding challenges, participate in contests, 
-                or discuss algorithmic solutions. Connect with me on your favorite platform!
-              </p>
-              <div className="flex gap-4 justify-center flex-wrap">
-                <Button className="btn-glow">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  View GitHub
-                </Button>
-                <Button variant="outline" className="glass-card border-primary/30">
-                  <Star className="w-4 h-4 mr-2" />
-                  Follow on LeetCode
-                </Button>
-              </div>
-            </Card>
-          </motion.div>
-        </div>
+        ))}
       </div>
+
+      {/* Profiles grid */}
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {codingProfiles.map((profile, i) => (
+          <motion.article
+            key={profile.platform}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+            className="card-interactive flex flex-col p-6"
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="icon-tile">
+                  <profile.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold tracking-tight">{profile.platform}</h3>
+                  <p className="font-code text-xs text-muted-foreground">
+                    @{profile.username}
+                  </p>
+                </div>
+              </div>
+              <a
+                href={profile.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${profile.platform} profile`}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+              {profile.description}
+            </p>
+
+            <div className="mb-5 grid grid-cols-2 gap-2">
+              {Object.entries(profile.stats).map(([key, value]) => (
+                <div
+                  key={key}
+                  className="rounded-lg border border-border/60 bg-background/50 px-3 py-2.5"
+                >
+                  <div className="text-sm font-semibold tracking-tight">{value}</div>
+                  <div className="text-[11px] text-muted-foreground">{key}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-auto">
+              <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <Award className="h-3.5 w-3.5 text-primary" />
+                Highlights
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {profile.achievements.map((achievement) => (
+                  <Badge key={achievement} variant="outline" className="font-normal text-xs">
+                    {achievement}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+
+      {/* Skills built */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-24"
+      >
+        <div className="mb-10 max-w-2xl space-y-3">
+          <p className="eyebrow">Why it matters</p>
+          <h2 className="text-3xl font-bold tracking-tight">
+            What competitive coding taught me
+          </h2>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {skills.map((skill, i) => (
+            <motion.div
+              key={skill.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="card-interactive p-6"
+            >
+              <div className="icon-tile mb-4">
+                <skill.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mb-2 font-semibold tracking-tight">{skill.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {skill.text}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-20 text-center"
+      >
+        <div className="card-surface mx-auto max-w-2xl p-10">
+          <div className="icon-tile mx-auto mb-5">
+            <Github className="h-5 w-5" />
+          </div>
+          <h2 className="mb-3 text-2xl font-bold tracking-tight">
+            The code speaks for itself
+          </h2>
+          <p className="mb-8 text-muted-foreground">
+            Most of my project work lives on GitHub — take a look at how I
+            structure notebooks, pipelines and apps.
+          </p>
+          <a
+            href="https://github.com/Logesh0247"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="gap-2">
+              <ExternalLink className="h-4 w-4" />
+              Visit my GitHub
+            </Button>
+          </a>
+        </div>
+      </motion.div>
     </div>
   );
 };
