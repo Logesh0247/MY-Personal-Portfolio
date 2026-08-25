@@ -1,14 +1,19 @@
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
-import Navigation from "@/components/Navigation";
-import ParticleBackground from "@/components/ParticleBackground";
-import { Mail, Phone, MapPin, Send, MessageCircle, Linkedin, Github, Instagram, Youtube, Twitter } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
+import { site, socialLinks } from "@/lib/site";
+import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -16,389 +21,286 @@ const Contact = () => {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
-    // Simulate form submission
-    toast({
-      title: "Message Sent! 🚀",
-      description: "Thank you for reaching out! I'll get back to you within 24 hours.",
-    });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
+    const subject = encodeURIComponent(
+      `[Portfolio] ${formData.subject || "New message"}`
+    );
+    const body = encodeURIComponent(
+      `Hi Logesh,\n\n${formData.message}\n\n— ${formData.name}\nReply to: ${formData.email}`
+    );
+
+    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+
+    toast({
+      title: "Opening your mail client",
+      description:
+        "Your message has been drafted — just hit send. You can also email me directly.",
     });
   };
 
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "8870989882",
-      href: "tel:+918870989882",
-      color: "text-green-500"
-    },
+  const contactMethods = [
     {
       icon: Mail,
       label: "Email",
-      value: "logeshds247@gmail.com",
-      href: "mailto:logeshds247@gmail.com",
-      color: "text-blue-500"
+      value: site.email,
+      href: `mailto:${site.email}`,
+      hint: "Best for detailed enquiries",
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: site.phone,
+      href: site.phoneHref,
+      hint: "Weekdays, 9am – 6pm IST",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Hosur,Tamil Nadu",
-      href: "#",
-      color: "text-red-500"
-    }
+      value: site.location,
+      href: undefined,
+      hint: "Open to remote & on-site",
+    },
   ];
 
-  const socialLinks = [
+  const faqs = [
     {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "#",
-      color: "#0077B5",
-      username: "logesh-s-data"
+      question: "What kinds of roles are you looking for?",
+      answer:
+        "Entry-level data scientist, data analyst or BI developer roles — full-time, internship or freelance. I'm strongest where analytics meets the business: dashboards, predictive models and reporting people trust.",
     },
     {
-      icon: Github,
-      label: "GitHub",
-      href: "#",
-      color: "#333",
-      username: "logesh-s"
+      question: "Are you open to freelance or contract projects?",
+      answer:
+        "Yes. I take on analytics and dashboarding projects, pipeline builds and data-cleaning work. Share a short brief and I'll reply with an estimate.",
     },
     {
-      icon: Instagram,
-      label: "Instagram",
-      href: "#",
-      color: "#E4405F",
-      username: "logesh_data"
+      question: "What is your preferred tech stack?",
+      answer:
+        "Python and SQL for analysis and modelling, Power BI and Tableau for visualisation, and React when a result needs to live on the web. I'm tool-agnostic — I choose what fits the problem.",
     },
     {
-      icon: Youtube,
-      label: "YouTube",
-      href: "#",
-      color: "#FF0000",
-      username: "LogeshDataScience"
+      question: "How soon can you start?",
+      answer:
+        "Immediately for freelance and internships. For full-time roles I'm happy to work around a standard notice-free start date — just mention the timeline in your message.",
     },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      href: "#",
-      color: "#1DA1F2",
-      username: "logesh_ds"
-    }
   ];
 
   return (
-    <div className="min-h-screen relative">
-      <ParticleBackground />
-      <Navigation />
-      
-      <div className="pt-24 px-4 pb-20">
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center space-y-4"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Get In Touch
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Ready to discuss data science opportunities, collaborations, or just want to say hello? 
-              I'd love to hear from you!
-            </p>
-          </motion.div>
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <PageHeader
+        eyebrow="Contact"
+        title="Let's work together"
+        description="Hiring for a data role, or have an analytics project in mind? Send me a message — I reply within one working day."
+      />
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <Card className="glass-card p-6">
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                  <MessageCircle className="w-6 h-6 text-primary" />
-                  Contact Information
-                </h2>
-                
-                <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <motion.a
-                      key={index}
-                      href={info.href}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="flex items-center gap-4 p-3 rounded-lg hover:bg-card-hover transition-colors group"
-                    >
-                      <div className={`w-10 h-10 bg-card rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                        <info.icon className={`w-5 h-5 ${info.color}`} />
-                      </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">{info.label}</div>
-                        <div className="font-medium">{info.value}</div>
-                      </div>
-                    </motion.a>
-                  ))}
-                </div>
-              </Card>
-
-              {/* Social Media */}
-              <Card className="glass-card p-6">
-                <h3 className="text-xl font-semibold mb-4">Connect on Social Media</h3>
-                <div className="space-y-3">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-card-hover transition-colors group"
-                    >
-                      <social.icon 
-                        className="w-5 h-5 group-hover:scale-110 transition-transform" 
-                        style={{ color: social.color }}
-                      />
-                      <div>
-                        <span className="font-medium">{social.label}</span>
-                        <span className="text-muted-foreground text-sm ml-2">@{social.username}</span>
-                      </div>
-                    </motion.a>
-                  ))}
-                </div>
-              </Card>
-
-              {/* Availability */}
-              <Card className="glass-card p-6">
-                <h3 className="text-xl font-semibold mb-4">Availability</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Response Time:</span>
-                    <span className="text-primary font-medium">Within 24 hours</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Best Time to Reach:</span>
-                    <span>9 AM - 6 PM IST</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Preferred Contact:</span>
-                    <span>Email or LinkedIn</span>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2"
-            >
-              <Card className="glass-card p-8">
-                <h2 className="text-2xl font-bold mb-6">Send Me a Message</h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        placeholder="Your full name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="glass-card border-primary/30 focus:border-primary"
-                      />
+      <div className="mt-16 grid gap-10 lg:grid-cols-5">
+        {/* Left column — direct channels */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="space-y-6 lg:col-span-2"
+        >
+          <div className="card-surface p-6">
+            <h2 className="mb-5 text-lg font-semibold tracking-tight">
+              Direct channels
+            </h2>
+            <div className="space-y-2">
+              {contactMethods.map((method) => {
+                const inner = (
+                  <>
+                    <div className="icon-tile shrink-0">
+                      <method.icon className="h-5 w-5" />
                     </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="glass-card border-primary/30 focus:border-primary"
-                      />
+                    <div className="min-w-0">
+                      <div className="font-code text-[11px] uppercase tracking-wider text-muted-foreground">
+                        {method.label}
+                      </div>
+                      <div className="truncate text-sm font-medium text-foreground">
+                        {method.value}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {method.hint}
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject *</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      placeholder="What's this about?"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="glass-card border-primary/30 focus:border-primary"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell me about your project, idea, or just say hello..."
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={6}
-                      className="glass-card border-primary/30 focus:border-primary resize-none"
-                    />
-                  </div>
-                  
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  </>
+                );
+                return method.href ? (
+                  <a
+                    key={method.label}
+                    href={method.href}
+                    className="flex items-center gap-4 rounded-lg p-3 transition-colors hover:bg-accent"
                   >
-                    <Button type="submit" className="w-full btn-glow py-3 text-lg">
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                    </Button>
-                  </motion.div>
-                </form>
-              </Card>
-            </motion.div>
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={method.label} className="flex items-center gap-4 p-3">
+                    {inner}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Quick Contact Options */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Card className="glass-card p-8">
-              <h2 className="text-2xl font-bold mb-8 text-center">Quick Contact Options</h2>
-              
-              <div className="grid md:grid-cols-3 gap-6">
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="text-center p-6 rounded-lg border border-primary/20 hover:border-primary/40 transition-colors cursor-pointer"
-                  onClick={() => window.open("mailto:logeshds247@gmail.com")}
+          <div className="card-surface p-6">
+            <h2 className="mb-4 text-lg font-semibold tracking-tight">Elsewhere</h2>
+            <div className="space-y-1">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 rounded-lg p-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 >
-                  <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Email Me</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    For detailed discussions and formal inquiries
-                  </p>
-                  <Button className="btn-glow w-full">
-                    Send Email
-                  </Button>
-                </motion.div>
-                
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="text-center p-6 rounded-lg border border-primary/20 hover:border-primary/40 transition-colors cursor-pointer"
-                  onClick={() => window.open("tel:+918870989882")}
-                >
-                  <Phone className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Call Me</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    For urgent matters and direct communication
-                  </p>
-                  <Button variant="outline" className="w-full glass-card border-green-500/30">
-                    Call Now
-                  </Button>
-                </motion.div>
-                
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="text-center p-6 rounded-lg border border-primary/20 hover:border-primary/40 transition-colors cursor-pointer"
-                  onClick={() => window.open("#")}
-                >
-                  <Linkedin className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Professional networking and opportunities
-                  </p>
-                  <Button variant="outline" className="w-full glass-card border-blue-500/30">
-                    Connect
-                  </Button>
-                </motion.div>
-              </div>
-            </Card>
-          </motion.section>
+                  <social.icon className="h-4 w-4 text-primary" />
+                  {social.label}
+                </a>
+              ))}
+            </div>
+          </div>
 
-          {/* FAQ */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Card className="glass-card p-8">
-              <h2 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  {
-                    question: "What types of projects do you work on?",
-                    answer: "I work on data science projects including predictive modeling, data visualization dashboards, ETL pipelines, and full-stack web applications."
-                  },
-                  {
-                    question: "Are you available for freelance work?",
-                    answer: "Yes! I'm open to freelance data science projects, consulting, and short-term contracts. Feel free to discuss your requirements."
-                  },
-                  {
-                    question: "What's your preferred tech stack?",
-                    answer: "Python, SQL, Power BI, Tableau for data science. React, Node.js for web development. Always open to learning new technologies."
-                  },
-                  {
-                    question: "Do you provide mentoring or tutoring?",
-                    answer: "Absolutely! I enjoy helping aspiring data scientists with learning paths, project guidance, and career advice."
-                  }
-                ].map((faq, index) => (
-                  <div key={index} className="space-y-3">
-                    <h3 className="font-semibold text-primary">{faq.question}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
-                  </div>
-                ))}
+          <div className="flex items-start gap-3 rounded-xl border border-primary/25 bg-primary/5 p-5 text-sm">
+            <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+            <p className="leading-relaxed text-muted-foreground">
+              <span className="font-medium text-foreground">Response time:</span>{" "}
+              I aim to reply to every genuine message within 24 hours on working
+              days.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Right column — form */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="lg:col-span-3"
+        >
+          <div className="card-surface h-full p-6 md:p-8">
+            <h2 className="mb-1 text-lg font-semibold tracking-tight">
+              Send a message
+            </h2>
+            <p className="mb-7 text-sm text-muted-foreground">
+              This opens your mail client with everything pre-filled — nothing
+              is stored or sent to a server.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="name">
+                    Name <span className="text-primary">*</span>
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    placeholder="Your full name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="bg-background/60"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">
+                    Email <span className="text-primary">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@company.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="bg-background/60"
+                  />
+                </div>
               </div>
-            </Card>
-          </motion.section>
-        </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="subject">
+                  Subject <span className="text-primary">*</span>
+                </Label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  placeholder="e.g. Data analyst role — referral"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="bg-background/60"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message">
+                  Message <span className="text-primary">*</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell me about the role, project, or question..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={6}
+                  className="resize-none bg-background/60"
+                />
+              </div>
+
+              <Button type="submit" size="lg" className="w-full gap-2 font-medium">
+                <Send className="h-4 w-4" />
+                Compose Message
+              </Button>
+            </form>
+          </div>
+        </motion.div>
       </div>
+
+      {/* FAQ */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mx-auto mt-24 max-w-3xl"
+      >
+        <div className="mb-8 space-y-3 text-center">
+          <p className="eyebrow">FAQ</p>
+          <h2 className="text-3xl font-bold tracking-tight">Common questions</h2>
+        </div>
+
+        <Accordion type="single" collapsible className="card-surface px-6">
+          {faqs.map((faq, i) => (
+            <AccordionItem
+              key={faq.question}
+              value={`item-${i}`}
+              className={i === faqs.length - 1 ? "border-b-0" : undefined}
+            >
+              <AccordionTrigger className="text-left text-sm font-medium hover:text-primary hover:no-underline">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="leading-relaxed text-muted-foreground">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </motion.section>
     </div>
   );
 };
