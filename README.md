@@ -15,7 +15,6 @@ A single-page React application with dedicated sections:
 | `/skills`   | Proficiency by category plus certifications                    |
 | `/projects` | Project case cards with a working category filter              |
 | `/resume`   | Structured résumé, printable / exportable to PDF               |
-| `/articles` | Technical writing with platform filter                         |
 | `/profiles` | Competitive coding and data science platform profiles          |
 | `/contact`  | Contact channels, message form and FAQ                         |
 

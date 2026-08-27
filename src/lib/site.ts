@@ -29,7 +29,6 @@ export const navItems = [
   { path: "/skills", label: "Skills" },
   { path: "/projects", label: "Projects" },
   { path: "/resume", label: "Resume" },
-  { path: "/articles", label: "Articles" },
   { path: "/profiles", label: "Profiles" },
   { path: "/contact", label: "Contact" },
 ];

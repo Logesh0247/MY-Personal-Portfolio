@@ -12,7 +12,6 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
-import Articles from "./pages/Articles";
 import Profiles from "./pages/Profiles";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
