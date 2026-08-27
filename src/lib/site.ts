@@ -21,21 +21,6 @@ export const socialLinks = [
     href: "#",
     icon: Linkedin,
   },
-  {
-    label: "Twitter / X",
-    href: "#",
-    icon: Twitter,
-  },
-  {
-    label: "YouTube",
-    href: "#",
-    icon: Youtube,
-  },
-  {
-    label: "Instagram",
-    href: "#",
-    icon: Instagram,
-  },
 ];
 
 export const navItems = [
