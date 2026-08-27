@@ -18,7 +18,7 @@ export const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/logesh-ds/",
     icon: Linkedin,
   },
 ];
