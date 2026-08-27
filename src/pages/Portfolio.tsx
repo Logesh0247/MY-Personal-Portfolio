@@ -28,7 +28,7 @@ const Portfolio = () => {
       icon: BarChart3,
       title: "Analytics & BI",
       description:
-        "Interactive Power BI and Tableau dashboards with clean data models, DAX measures and KPI reporting.",
+        "Interactive Power BI dashboards with clean data models, DAX measures and KPI reporting.",
     },
     {
       icon: Brain,
@@ -64,7 +64,7 @@ const Portfolio = () => {
       title: "E-commerce Data Pipeline",
       summary:
         "Automated ETL moving daily order data into a star-schema warehouse for analytics.",
-      tags: ["Python", "MySQL", "Tableau"],
+      tags: ["Python", "MySQL", "Power BI"],
     },
   ];
 
@@ -96,8 +96,7 @@ const Portfolio = () => {
                 analytics dashboards, predictive models and data pipelines using{" "}
                 <span className="font-medium text-foreground">SQL</span>,{" "}
                 <span className="font-medium text-foreground">Python</span>,{" "}
-                <span className="font-medium text-foreground">Power BI</span> and{" "}
-                <span className="font-medium text-foreground">Tableau</span>.
+                <span className="font-medium text-foreground">Power BI</span>.
               </p>
             </motion.div>
 

@@ -39,10 +39,10 @@ const articles = [
   {
     title: "Data Visualisation Best Practices: Make Charts Tell a Story",
     excerpt:
-      "How to choose the right chart, remove clutter and annotate with intent — with examples in Power BI, Tableau and Python.",
+      "How to choose the right chart, remove clutter and annotate with intent — with examples in Power BI and Python.",
     readTime: "10 min read",
     date: "2023-11-30",
-    tags: ["Visualisation", "Power BI", "Tableau"],
+    tags: ["Visualisation", "Power BI", "Python"],
     platform: "LinkedIn",
   },
   {
@@ -196,7 +196,6 @@ const Articles = () => {
             "Supervised & unsupervised learning",
             "Model deployment",
             "Power BI",
-            "Tableau",
             "Dashboard design",
             "Statistical analysis",
             "A/B testing",

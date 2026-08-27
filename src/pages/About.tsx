@@ -28,7 +28,7 @@ const About = () => {
     { label: "Location", value: site.location },
     { label: "Education", value: "B.Sc. Data Science (2021–2024)" },
     { label: "Focus", value: "Analytics · ML · BI" },
-    { label: "Core stack", value: "SQL, Python, Power BI, Tableau" },
+    { label: "Core stack", value: "SQL, Python, Power BI" },
     { label: "Currently", value: "Open to opportunities" },
     { label: "Interests", value: "Visualisation, open source, writing" },
   ];
@@ -68,7 +68,7 @@ const About = () => {
       year: "2023",
       title: "Advanced analytics skills",
       description:
-        "Deepened my toolkit: SQL optimisation, Python for data analysis (pandas, scikit-learn), and dashboard design in Power BI and Tableau through real projects.",
+        "Deepened my toolkit: SQL optimisation, Python for data analysis (pandas, scikit-learn), and dashboard design in Power BI through real projects.",
       icon: Code2,
     },
     {

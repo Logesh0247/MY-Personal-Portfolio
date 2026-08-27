@@ -61,11 +61,11 @@ const projects = [
   {
     title: "E-commerce Data Pipeline",
     description:
-      "Automated ETL pipeline that moves daily order data into a clean star-schema warehouse, with Tableau dashboards layered on top for insights.",
+      "Automated ETL pipeline that moves daily order data into a clean star-schema warehouse, with Power BI dashboards layered on top for insights.",
     category: "Data Engineering",
     date: "2024",
     featured: true,
-    technologies: ["Python", "MySQL", "Tableau"],
+    technologies: ["Python", "MySQL", "Power BI"],
     highlights: [
       "Fully automated extract–transform–load flow",
       "Star schema for fast analytical queries",
@@ -93,7 +93,7 @@ const projects = [
     category: "Healthcare Analytics",
     date: "2023",
     featured: false,
-    technologies: ["Tableau", "SQL", "R", "Statistics"],
+    technologies: ["Power BI", "SQL", "R", "Statistics"],
     highlights: [
       "10+ clinical and operational metrics",
       "Hypothesis-tested treatment comparisons",
