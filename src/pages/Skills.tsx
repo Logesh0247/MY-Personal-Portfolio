@@ -60,17 +60,6 @@ const Skills = () => {
         { name: "Jupyter", level: 90, note: "Notebooks, reporting workflows" },
       ],
     },
-    {
-      title: "Web & Deployment",
-      icon: Layers,
-      description: "Sharing results as working applications, not just slides.",
-      skills: [
-        { name: "React", level: 85, note: "Hooks, component design" },
-        { name: "Node.js", level: 80, note: "REST APIs, integration" },
-        { name: "HTML & CSS", level: 90, note: "Responsive, accessible UIs" },
-        { name: "FastAPI", level: 75, note: "Model-serving endpoints" },
-      ],
-    },
   ];
 
   const certifications = [
