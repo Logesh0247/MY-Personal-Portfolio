@@ -74,9 +74,6 @@ const Navigation = () => {
           <SheetContent side="right" className="w-72 bg-card">
             <SheetHeader>
               <SheetTitle className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-code text-sm font-semibold text-primary-foreground">
-                  LS
-                </span>
                 <span className="flex flex-col text-left leading-tight">
                   <span className="text-sm font-semibold">Logesh S</span>
                   <span className="text-[11px] font-normal text-muted-foreground">
