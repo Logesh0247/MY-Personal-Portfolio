@@ -24,8 +24,8 @@ const Navigation = () => {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Brand */}
         <Link to="/" className="group flex items-center gap-3">
-          <span className="h-9 w-9 overflow-hidden rounded-md border border-primary/40">
-            <img src="/profile.jpg" alt="" className="h-full w-full object-cover object-top" />
+          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-code text-sm font-semibold text-primary-foreground">
+            LS
           </span>
           <span className="hidden flex-col leading-tight sm:flex">
             <span className="text-sm font-semibold tracking-tight text-foreground">
@@ -74,8 +74,8 @@ const Navigation = () => {
           <SheetContent side="right" className="w-72 bg-card">
             <SheetHeader>
               <SheetTitle className="flex items-center gap-3">
-                <span className="h-9 w-9 overflow-hidden rounded-md border border-primary/40">
-                  <img src="/profile.jpg" alt="" className="h-full w-full object-cover object-top" />
+                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-code text-sm font-semibold text-primary-foreground">
+                  LS
                 </span>
                 <span className="flex flex-col text-left leading-tight">
                   <span className="text-sm font-semibold">Logesh S</span>

@@ -72,7 +72,7 @@ const Portfolio = () => {
     <div>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 md:pt-24">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+        <div className="max-w-3xl">
           <div className="space-y-8">
             <motion.div {...fadeUp(0)} className="space-y-5">
               <div className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-4 py-1.5 text-xs text-muted-foreground">
@@ -139,19 +139,6 @@ const Portfolio = () => {
               </span>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="portrait-frame relative overflow-hidden rounded-sm border border-white/15"
-          >
-            <img
-              src="/profile.jpg"
-              alt="Logesh S"
-              className="block h-auto w-full"
-            />
-          </motion.div>
         </div>
       </section>
 
