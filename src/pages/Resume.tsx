@@ -43,12 +43,9 @@ const Resume = () => {
   ];
 
   const certifications = [
-    "Data Science Specialization — Coursera",
-    "Machine Learning A–Z — Udemy",
-    "Advanced SQL — HackerRank",
-    "Python for Data Science — Kaggle",
-    "Power BI Data Analyst — Microsoft (in progress)",
-    "Statistical Analysis with R — DataCamp",
+    "Microsoft Certified: Fabric Analytics Engineer Associate — Microsoft",
+    "Data Science Essentials With Python — Cisco",
+    "Data Analytics Essentials — Cisco",
   ];
 
   return (
