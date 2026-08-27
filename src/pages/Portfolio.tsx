@@ -77,8 +77,8 @@ const Portfolio = () => {
             <motion.div {...fadeUp(0)} className="space-y-5">
               <div className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-4 py-1.5 text-xs text-muted-foreground">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
                 </span>
                 Open to data science opportunities
               </div>
@@ -141,24 +141,16 @@ const Portfolio = () => {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, ease: "easeOut" }}
-            className="portrait-frame relative aspect-[3/4] overflow-hidden rounded-sm border border-white/10 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.85)] lg:aspect-[4/5]"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="portrait-frame relative overflow-hidden rounded-sm border border-white/15"
           >
             <img
               src="/profile.jpg"
               alt="Logesh S"
-              className="kenburns h-full w-full object-cover object-[center_18%]"
+              className="block h-auto w-full"
             />
-            <div className="absolute inset-x-0 bottom-0 z-10 p-6">
-              <p className="font-code text-[10px] uppercase tracking-[0.35em] text-primary">
-                Directed by data
-              </p>
-              <p className="mt-1 font-heading text-2xl font-semibold text-white">
-                Logesh S
-              </p>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -308,7 +300,7 @@ const Portfolio = () => {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 60% 80% at 50% 120%, hsl(185 84% 42% / 0.10), transparent 70%)",
+                "radial-gradient(ellipse 60% 80% at 50% 120%, hsl(0 0% 100% / 0.08), transparent 70%)",
             }}
           />
           <div className="relative space-y-6">
