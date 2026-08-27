@@ -12,9 +12,6 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-code text-sm font-semibold text-primary-foreground">
-                LS
-              </span>
               <span className="text-sm font-semibold tracking-tight">
                 {site.name}
               </span>

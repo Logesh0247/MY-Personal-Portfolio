@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import PageHeader from "@/components/PageHeader";
-import { site } from "@/lib/site";
+import { site, certifications } from "@/lib/site";
 import {
   Award,
   Briefcase,
@@ -37,18 +37,9 @@ const Resume = () => {
     {
       title: "E-commerce Data Pipeline",
       description:
-        "Implemented an automated ETL pipeline loading daily order data into a star-schema MySQL warehouse, with Tableau visualisations on top.",
-      technologies: "Python, MySQL, Tableau",
+        "Implemented an automated ETL pipeline loading daily order data into a star-schema MySQL warehouse, with Power BI visualisations on top.",
+      technologies: "Python, MySQL, Power BI",
     },
-  ];
-
-  const certifications = [
-    "Data Science Specialization — Coursera",
-    "Machine Learning A–Z — Udemy",
-    "Advanced SQL — HackerRank",
-    "Python for Data Science — Kaggle",
-    "Power BI Data Analyst — Microsoft (in progress)",
-    "Statistical Analysis with R — DataCamp",
   ];
 
   return (
@@ -112,8 +103,7 @@ const Resume = () => {
           <p className="text-sm leading-relaxed text-muted-foreground">
             Data Science graduate with strong analytical skills and hands-on
             project experience in machine learning, data visualisation and
-            statistical analysis. Proficient in Python, SQL, Power BI and
-            Tableau. Looking to apply technical expertise and problem-solving
+            statistical analysis. Proficient in Python, SQL and Power BI. Looking to apply technical expertise and problem-solving
             ability to drive data-informed decisions as a Data Scientist.
           </p>
         </section>
@@ -181,10 +171,6 @@ const Resume = () => {
                   DAX, data modelling, interactive dashboards
                 </li>
                 <li>
-                  <span className="font-medium text-foreground">Tableau:</span>{" "}
-                  advanced visualisation, storytelling
-                </li>
-                <li>
                   <span className="font-medium text-foreground">Excel:</span>{" "}
                   pivot tables, advanced formulas
                 </li>
@@ -230,11 +216,18 @@ const Resume = () => {
           <ul className="grid gap-2 sm:grid-cols-2">
             {certifications.map((cert) => (
               <li
-                key={cert}
+                key={cert.title}
                 className="flex items-start gap-2 text-sm text-muted-foreground"
               >
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                {cert}
+                <a
+                  href={cert.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline-offset-2 hover:text-foreground hover:underline"
+                >
+                  {cert.title} — {cert.provider}
+                </a>
               </li>
             ))}
           </ul>

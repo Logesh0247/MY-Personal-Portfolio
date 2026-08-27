@@ -6,12 +6,12 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CinematicLayer from "@/components/CinematicLayer";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
-import Articles from "./pages/Articles";
 import Profiles from "./pages/Profiles";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -34,6 +34,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <div className="flex min-h-screen flex-col">
+          <CinematicLayer />
           <Navigation />
           <main className="flex-1 pt-16">
             <Routes>
@@ -42,7 +43,6 @@ const App = () => (
               <Route path="/skills" element={<Skills />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/resume" element={<Resume />} />
-              <Route path="/articles" element={<Articles />} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 import { site, stats } from "@/lib/site";
 import {
   ArrowRight,
@@ -14,7 +14,6 @@ import {
   GraduationCap,
   Mail,
   MapPin,
-  TrendingUp,
 } from "lucide-react";
 
 const fadeUp = (delay = 0) => ({
@@ -23,96 +22,13 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: "easeOut" as const },
 });
 
-/* Mini analytics dashboard used as the hero visual */
-const DashboardVisual = () => {
-  const bars = [42, 68, 50, 82, 58, 92, 74, 63, 88, 70, 96, 78];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-      className="card-surface relative overflow-hidden p-6"
-    >
-      {/* Window chrome */}
-      <div className="mb-6 flex items-center justify-between border-b border-border/70 pb-4">
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-          </div>
-          <span className="font-code text-xs text-muted-foreground">
-            analytics_overview.pbix
-          </span>
-        </div>
-        <Badge variant="outline" className="font-code text-[10px] text-primary">
-          LIVE
-        </Badge>
-      </div>
-
-      {/* KPI row */}
-      <div className="mb-6 grid grid-cols-3 gap-3">
-        {[
-          { label: "Accuracy", value: "94.2%", delta: "+2.1%" },
-          { label: "Revenue", value: "₹8.4L", delta: "+12%" },
-          { label: "Churn", value: "4.8%", delta: "-23%" },
-        ].map((kpi) => (
-          <div
-            key={kpi.label}
-            className="rounded-lg border border-border/70 bg-background/60 p-3"
-          >
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              {kpi.label}
-            </p>
-            <p className="mt-1 text-lg font-semibold tracking-tight">{kpi.value}</p>
-            <p className="mt-0.5 flex items-center gap-1 font-code text-[10px] text-success">
-              <TrendingUp className="h-3 w-3" />
-              {kpi.delta}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Bar chart */}
-      <div className="rounded-lg border border-border/70 bg-background/60 p-4">
-        <div className="mb-3 flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground">
-            Monthly forecast vs. actuals
-          </span>
-          <span className="font-code text-[10px] text-muted-foreground">2024</span>
-        </div>
-        <div className="flex h-32 items-end gap-1.5">
-          {bars.map((height, i) => (
-            <motion.div
-              key={i}
-              initial={{ height: 0 }}
-              animate={{ height: `${height}%` }}
-              transition={{ duration: 0.8, delay: 0.6 + i * 0.05, ease: "easeOut" }}
-              className={`flex-1 rounded-sm ${
-                i === 10 ? "bg-primary" : "bg-primary/25"
-              }`}
-            />
-          ))}
-        </div>
-        <div className="mt-2 flex justify-between font-code text-[9px] text-muted-foreground">
-          <span>JAN</span>
-          <span>APR</span>
-          <span>AUG</span>
-          <span>DEC</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const Portfolio = () => {
   const highlights = [
     {
       icon: BarChart3,
       title: "Analytics & BI",
       description:
-        "Interactive Power BI and Tableau dashboards with clean data models, DAX measures and KPI reporting.",
+        "Interactive Power BI dashboards with clean data models, DAX measures and KPI reporting.",
     },
     {
       icon: Brain,
@@ -148,7 +64,7 @@ const Portfolio = () => {
       title: "E-commerce Data Pipeline",
       summary:
         "Automated ETL moving daily order data into a star-schema warehouse for analytics.",
-      tags: ["Python", "MySQL", "Tableau"],
+      tags: ["Python", "MySQL", "Power BI"],
     },
   ];
 
@@ -156,22 +72,22 @@ const Portfolio = () => {
     <div>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 md:pt-24">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+        <div className="max-w-3xl">
           <div className="space-y-8">
             <motion.div {...fadeUp(0)} className="space-y-5">
               <div className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-4 py-1.5 text-xs text-muted-foreground">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
                 </span>
                 Open to data science opportunities
               </div>
 
-              <h1 className="text-balance text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+              <h1 className="text-balance font-heading text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl">
                 Hi, I'm Logesh.
-                <span className="mt-3 block text-muted-foreground">
+                <span className="mt-3 block italic text-muted-foreground">
                   I turn raw data into{" "}
-                  <span className="text-primary">decisions</span>.
+                  <span className="not-italic text-primary">decisions</span>.
                 </span>
               </h1>
 
@@ -180,8 +96,7 @@ const Portfolio = () => {
                 analytics dashboards, predictive models and data pipelines using{" "}
                 <span className="font-medium text-foreground">SQL</span>,{" "}
                 <span className="font-medium text-foreground">Python</span>,{" "}
-                <span className="font-medium text-foreground">Power BI</span> and{" "}
-                <span className="font-medium text-foreground">Tableau</span>.
+                <span className="font-medium text-foreground">Power BI</span>.
               </p>
             </motion.div>
 
@@ -223,8 +138,6 @@ const Portfolio = () => {
               </span>
             </motion.div>
           </div>
-
-          <DashboardVisual />
         </div>
       </section>
 
@@ -345,9 +258,12 @@ const Portfolio = () => {
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="font-normal">
+                      <span
+                        key={tag}
+                        className="rounded-md border border-border bg-secondary px-2 py-0.5 text-xs text-muted-foreground"
+                      >
                         {tag}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </Link>
@@ -370,7 +286,7 @@ const Portfolio = () => {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 60% 80% at 50% 120%, hsl(185 84% 42% / 0.10), transparent 70%)",
+                "radial-gradient(ellipse 60% 80% at 50% 120%, hsl(0 0% 100% / 0.08), transparent 70%)",
             }}
           />
           <div className="relative space-y-6">

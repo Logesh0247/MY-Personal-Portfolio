@@ -2,18 +2,16 @@ import { motion } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import PageHeader from "@/components/PageHeader";
-import { stats } from "@/lib/site";
+import { stats, certifications } from "@/lib/site";
 import {
+  ArrowUpRight,
   BarChart3,
   BookOpen,
   Brain,
   CheckCircle2,
-  CircleDashed,
-  Clock,
   Code,
   Database,
   FolderKanban,
-  Layers,
 } from "lucide-react";
 
 const Skills = () => {
@@ -26,7 +24,6 @@ const Skills = () => {
         { name: "Python", level: 90, note: "pandas, NumPy, scikit-learn" },
         { name: "SQL", level: 95, note: "Complex queries, optimisation" },
         { name: "R", level: 75, note: "Statistical analysis, ggplot2" },
-        { name: "JavaScript", level: 80, note: "React, data-driven UIs" },
       ],
     },
     {
@@ -35,7 +32,6 @@ const Skills = () => {
       description: "Turning analysis into dashboards people actually open.",
       skills: [
         { name: "Power BI", level: 92, note: "DAX, data modelling, KPIs" },
-        { name: "Tableau", level: 88, note: "Advanced charts, storytelling" },
         { name: "Matplotlib / Seaborn", level: 85, note: "Publication-ready plots" },
         { name: "Excel", level: 95, note: "Pivot tables, power query" },
       ],
@@ -62,47 +58,7 @@ const Skills = () => {
         { name: "Jupyter", level: 90, note: "Notebooks, reporting workflows" },
       ],
     },
-    {
-      title: "Web & Deployment",
-      icon: Layers,
-      description: "Sharing results as working applications, not just slides.",
-      skills: [
-        { name: "React", level: 85, note: "Hooks, component design" },
-        { name: "Node.js", level: 80, note: "REST APIs, integration" },
-        { name: "HTML & CSS", level: 90, note: "Responsive, accessible UIs" },
-        { name: "FastAPI", level: 75, note: "Model-serving endpoints" },
-      ],
-    },
   ];
-
-  const certifications = [
-    { title: "Data Science Specialization", provider: "Coursera", status: "Completed" },
-    { title: "Machine Learning A–Z", provider: "Udemy", status: "Completed" },
-    { title: "Advanced SQL", provider: "HackerRank", status: "Completed" },
-    { title: "Python for Data Science", provider: "Kaggle", status: "Completed" },
-    { title: "Power BI Data Analyst", provider: "Microsoft", status: "In progress" },
-    { title: "Tableau Desktop Specialist", provider: "Tableau", status: "Planned" },
-  ];
-
-  const statusStyle = (status: string) => {
-    switch (status) {
-      case "Completed":
-        return {
-          icon: CheckCircle2,
-          className: "text-success border-success/30 bg-success/10",
-        };
-      case "In progress":
-        return {
-          icon: Clock,
-          className: "text-warning border-warning/30 bg-warning/10",
-        };
-      default:
-        return {
-          icon: CircleDashed,
-          className: "text-muted-foreground border-border bg-muted/50",
-        };
-    }
-  };
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
@@ -198,38 +154,44 @@ const Skills = () => {
           <h2 className="text-3xl font-bold tracking-tight">
             Certifications & learning
           </h2>
+          <p className="text-sm text-muted-foreground">
+            Click a card to open the official credential page.
+          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((cert, i) => {
-            const style = statusStyle(cert.status);
-            return (
-              <motion.div
-                key={cert.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="card-interactive flex items-start justify-between gap-4 p-5"
-              >
-                <div>
-                  <h3 className="text-sm font-semibold tracking-tight">
-                    {cert.title}
-                  </h3>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {cert.provider}
-                  </p>
-                </div>
+          {certifications.map((cert, i) => (
+            <motion.a
+              key={cert.title}
+              href={cert.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="card-interactive flex items-start justify-between gap-4 p-5"
+            >
+              <div>
+                <h3 className="text-sm font-semibold tracking-tight">
+                  {cert.title}
+                </h3>
+                <p className="mt-2 text-xs font-medium text-foreground">
+                  View credential
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-col items-end gap-2">
                 <Badge
                   variant="outline"
-                  className={`shrink-0 gap-1 border text-[11px] font-normal ${style.className}`}
+                  className="gap-1 border text-[11px] font-normal text-foreground border-border bg-muted/50"
                 >
-                  <style.icon className="h-3 w-3" />
-                  {cert.status}
+                  <CheckCircle2 className="h-3 w-3" />
+                  Completed
                 </Badge>
-              </motion.div>
-            );
-          })}
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+              </div>
+            </motion.a>
+          ))}
         </div>
       </motion.section>
     </div>

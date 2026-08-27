@@ -88,7 +88,7 @@ const Contact = () => {
     {
       question: "What is your preferred tech stack?",
       answer:
-        "Python and SQL for analysis and modelling, Power BI and Tableau for visualisation, and React when a result needs to live on the web. I'm tool-agnostic — I choose what fits the problem.",
+        "Python and SQL for analysis and modelling, and Power BI for visualisation. I'm tool-agnostic — I choose what fits the problem.",
     },
     {
       question: "How soon can you start?",
