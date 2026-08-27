@@ -79,7 +79,6 @@ const Skills = () => {
     { title: "Advanced SQL", provider: "HackerRank", status: "Completed" },
     { title: "Python for Data Science", provider: "Kaggle", status: "Completed" },
     { title: "Power BI Data Analyst", provider: "Microsoft", status: "In progress" },
-    { title: "Tableau Desktop Specialist", provider: "Tableau", status: "Planned" },
   ];
 
   const statusStyle = (status: string) => {
