@@ -103,8 +103,7 @@ const Resume = () => {
           <p className="text-sm leading-relaxed text-muted-foreground">
             Data Science graduate with strong analytical skills and hands-on
             project experience in machine learning, data visualisation and
-            statistical analysis. Proficient in Python, SQL, Power BI and
-            Tableau. Looking to apply technical expertise and problem-solving
+            statistical analysis. Proficient in Python, SQL and Power BI. Looking to apply technical expertise and problem-solving
             ability to drive data-informed decisions as a Data Scientist.
           </p>
         </section>
