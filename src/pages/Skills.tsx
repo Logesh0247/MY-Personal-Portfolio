@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import PageHeader from "@/components/PageHeader";
-import { stats } from "@/lib/site";
+import { stats, certifications } from "@/lib/site";
 import {
   ArrowUpRight,
   BarChart3,
@@ -57,27 +57,6 @@ const Skills = () => {
         { name: "Git & GitHub", level: 85, note: "Branching, reviews, CI basics" },
         { name: "Jupyter", level: 90, note: "Notebooks, reporting workflows" },
       ],
-    },
-  ];
-
-  const certifications = [
-    {
-      title: "Microsoft Certified: Fabric Analytics Engineer Associate",
-      provider: "Microsoft",
-      earned: "July 2026",
-      href: "https://learn.microsoft.com/en-us/users/LOGESH-247/credentials/13620B94421F7411",
-    },
-    {
-      title: "Data Science Essentials With Python",
-      provider: "Cisco",
-      earned: "February 2026",
-      href: "https://www.credly.com/badges/4de0c340-f134-4427-aa68-5df8ba372a94",
-    },
-    {
-      title: "Data Analytics Essentials",
-      provider: "Cisco",
-      earned: "February 2026",
-      href: "https://www.credly.com/badges/712a220f-e3ee-4f34-a950-e7ef1a6102ea",
     },
   ];
 
@@ -175,6 +154,9 @@ const Skills = () => {
           <h2 className="text-3xl font-bold tracking-tight">
             Certifications & learning
           </h2>
+          <p className="text-sm text-muted-foreground">
+            Click a card to open the official credential page.
+          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -194,8 +176,8 @@ const Skills = () => {
                 <h3 className="text-sm font-semibold tracking-tight">
                   {cert.title}
                 </h3>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {cert.provider} · {cert.earned}
+                <p className="mt-2 text-xs font-medium text-foreground">
+                  View credential
                 </p>
               </div>
               <div className="flex shrink-0 flex-col items-end gap-2">

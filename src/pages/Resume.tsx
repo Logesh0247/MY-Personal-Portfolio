@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import PageHeader from "@/components/PageHeader";
-import { site } from "@/lib/site";
+import { site, certifications } from "@/lib/site";
 import {
   Award,
   Briefcase,
@@ -40,12 +40,6 @@ const Resume = () => {
         "Implemented an automated ETL pipeline loading daily order data into a star-schema MySQL warehouse, with Tableau visualisations on top.",
       technologies: "Python, MySQL, Tableau",
     },
-  ];
-
-  const certifications = [
-    "Microsoft Certified: Fabric Analytics Engineer Associate — Microsoft",
-    "Data Science Essentials With Python — Cisco",
-    "Data Analytics Essentials — Cisco",
   ];
 
   return (

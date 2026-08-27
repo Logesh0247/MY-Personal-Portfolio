@@ -49,6 +49,27 @@ export const navItems = [
   { path: "/contact", label: "Contact" },
 ];
 
+export const certifications = [
+  {
+    title: "Microsoft Certified: Fabric Analytics Engineer Associate",
+    provider: "Microsoft",
+    earned: "July 2026",
+    href: "https://learn.microsoft.com/en-us/users/LOGESH-247/credentials/13620B94421F7411",
+  },
+  {
+    title: "Data Science Essentials With Python",
+    provider: "Cisco",
+    earned: "February 2026",
+    href: "https://www.credly.com/badges/4de0c340-f134-4427-aa68-5df8ba372a94",
+  },
+  {
+    title: "Data Analytics Essentials",
+    provider: "Cisco",
+    earned: "February 2026",
+    href: "https://www.credly.com/badges/712a220f-e3ee-4f34-a950-e7ef1a6102ea",
+  },
+];
+
 export const stats = {
   projects: "10+",
   technologies: "15+",
