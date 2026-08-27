@@ -24,10 +24,7 @@ const Navigation = () => {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Brand */}
         <Link to="/" className="group flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-code text-sm font-semibold text-primary-foreground">
-            LS
-          </span>
-          <span className="hidden flex-col leading-tight sm:flex">
+          <span className="flex flex-col leading-tight">
             <span className="text-sm font-semibold tracking-tight text-foreground">
               Logesh S
             </span>
