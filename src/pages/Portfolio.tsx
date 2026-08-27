@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 import { site, stats } from "@/lib/site";
 import {
   ArrowRight,
@@ -14,7 +14,6 @@ import {
   GraduationCap,
   Mail,
   MapPin,
-  TrendingUp,
 } from "lucide-react";
 
 const fadeUp = (delay = 0) => ({
@@ -22,89 +21,6 @@ const fadeUp = (delay = 0) => ({
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, delay, ease: "easeOut" as const },
 });
-
-/* Mini analytics dashboard used as the hero visual */
-const DashboardVisual = () => {
-  const bars = [42, 68, 50, 82, 58, 92, 74, 63, 88, 70, 96, 78];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-      className="card-surface relative overflow-hidden p-6"
-    >
-      {/* Window chrome */}
-      <div className="mb-6 flex items-center justify-between border-b border-border/70 pb-4">
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-          </div>
-          <span className="font-code text-xs text-muted-foreground">
-            analytics_overview.pbix
-          </span>
-        </div>
-        <Badge variant="outline" className="font-code text-[10px] text-primary">
-          LIVE
-        </Badge>
-      </div>
-
-      {/* KPI row */}
-      <div className="mb-6 grid grid-cols-3 gap-3">
-        {[
-          { label: "Accuracy", value: "94.2%", delta: "+2.1%" },
-          { label: "Revenue", value: "₹8.4L", delta: "+12%" },
-          { label: "Churn", value: "4.8%", delta: "-23%" },
-        ].map((kpi) => (
-          <div
-            key={kpi.label}
-            className="rounded-lg border border-border/70 bg-background/60 p-3"
-          >
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              {kpi.label}
-            </p>
-            <p className="mt-1 text-lg font-semibold tracking-tight">{kpi.value}</p>
-            <p className="mt-0.5 flex items-center gap-1 font-code text-[10px] text-success">
-              <TrendingUp className="h-3 w-3" />
-              {kpi.delta}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Bar chart */}
-      <div className="rounded-lg border border-border/70 bg-background/60 p-4">
-        <div className="mb-3 flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground">
-            Monthly forecast vs. actuals
-          </span>
-          <span className="font-code text-[10px] text-muted-foreground">2024</span>
-        </div>
-        <div className="flex h-32 items-end gap-1.5">
-          {bars.map((height, i) => (
-            <motion.div
-              key={i}
-              initial={{ height: 0 }}
-              animate={{ height: `${height}%` }}
-              transition={{ duration: 0.8, delay: 0.6 + i * 0.05, ease: "easeOut" }}
-              className={`flex-1 rounded-sm ${
-                i === 10 ? "bg-primary" : "bg-primary/25"
-              }`}
-            />
-          ))}
-        </div>
-        <div className="mt-2 flex justify-between font-code text-[9px] text-muted-foreground">
-          <span>JAN</span>
-          <span>APR</span>
-          <span>AUG</span>
-          <span>DEC</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const Portfolio = () => {
   const highlights = [
@@ -167,11 +83,11 @@ const Portfolio = () => {
                 Open to data science opportunities
               </div>
 
-              <h1 className="text-balance text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+              <h1 className="text-balance font-heading text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl">
                 Hi, I'm Logesh.
-                <span className="mt-3 block text-muted-foreground">
+                <span className="mt-3 block italic text-muted-foreground">
                   I turn raw data into{" "}
-                  <span className="text-primary">decisions</span>.
+                  <span className="not-italic text-primary">decisions</span>.
                 </span>
               </h1>
 
@@ -224,7 +140,26 @@ const Portfolio = () => {
             </motion.div>
           </div>
 
-          <DashboardVisual />
+          <motion.div
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, ease: "easeOut" }}
+            className="portrait-frame relative aspect-[3/4] overflow-hidden rounded-sm border border-white/10 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.85)] lg:aspect-[4/5]"
+          >
+            <img
+              src="/profile.jpg"
+              alt="Logesh S"
+              className="kenburns h-full w-full object-cover object-[center_18%]"
+            />
+            <div className="absolute inset-x-0 bottom-0 z-10 p-6">
+              <p className="font-code text-[10px] uppercase tracking-[0.35em] text-primary">
+                Directed by data
+              </p>
+              <p className="mt-1 font-heading text-2xl font-semibold text-white">
+                Logesh S
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -345,9 +280,12 @@ const Portfolio = () => {
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="font-normal">
+                      <span
+                        key={tag}
+                        className="rounded-md border border-border bg-secondary px-2 py-0.5 text-xs text-muted-foreground"
+                      >
                         {tag}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </Link>

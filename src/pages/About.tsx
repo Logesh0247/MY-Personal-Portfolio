@@ -139,6 +139,13 @@ const About = () => {
         </motion.div>
 
         <motion.aside {...sectionMotion(0.1)} className="lg:col-span-2">
+          <div className="portrait-frame mb-6 aspect-[4/5] overflow-hidden rounded-sm border border-white/10">
+            <img
+              src="/profile.jpg"
+              alt="Logesh S"
+              className="h-full w-full object-cover object-[center_18%]"
+            />
+          </div>
           <div className="card-surface space-y-5 p-6">
             <div className="flex items-center gap-3 border-b border-border/70 pb-4">
               <div className="icon-tile">

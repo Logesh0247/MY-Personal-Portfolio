@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CinematicLayer from "@/components/CinematicLayer";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Skills from "./pages/Skills";
@@ -34,6 +35,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <div className="flex min-h-screen flex-col">
+          <CinematicLayer />
           <Navigation />
           <main className="flex-1 pt-16">
             <Routes>
