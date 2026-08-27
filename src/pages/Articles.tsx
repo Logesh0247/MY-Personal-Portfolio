@@ -239,7 +239,13 @@ const Articles = () => {
               <ArrowUpRight className="h-4 w-4" />
               Follow on Medium
             </Button>
-            <Button variant="outline">Connect on LinkedIn</Button>
+            <a
+              href="https://www.linkedin.com/in/logesh-ds/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline">Connect on LinkedIn</Button>
+            </a>
           </div>
         </div>
       </motion.div>
