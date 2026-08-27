@@ -26,7 +26,6 @@ const Skills = () => {
         { name: "Python", level: 90, note: "pandas, NumPy, scikit-learn" },
         { name: "SQL", level: 95, note: "Complex queries, optimisation" },
         { name: "R", level: 75, note: "Statistical analysis, ggplot2" },
-        { name: "JavaScript", level: 80, note: "React, data-driven UIs" },
       ],
     },
     {
@@ -35,7 +34,6 @@ const Skills = () => {
       description: "Turning analysis into dashboards people actually open.",
       skills: [
         { name: "Power BI", level: 92, note: "DAX, data modelling, KPIs" },
-        { name: "Tableau", level: 88, note: "Advanced charts, storytelling" },
         { name: "Matplotlib / Seaborn", level: 85, note: "Publication-ready plots" },
         { name: "Excel", level: 95, note: "Pivot tables, power query" },
       ],
